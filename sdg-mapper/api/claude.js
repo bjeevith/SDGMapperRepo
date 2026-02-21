@@ -1,23 +1,20 @@
-/**
- * Vercel Serverless Function — /api/claude
- *
- * Proxies requests from the frontend to the Anthropic API,
- * injecting the API key from the environment variable ANTHROPIC_API_KEY.
- * The key is never exposed to the browser.
- *
- * Set ANTHROPIC_API_KEY in:
- *   Vercel Dashboard → Project → Settings → Environment Variables
- */
 export default async function handler(req, res) {
-  // Only allow POST
+  // Handle CORS preflight
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
-    console.error("ANTHROPIC_API_KEY environment variable is not set");
-    return res.status(500).json({ error: "Server configuration error: API key not set" });
+    return res.status(500).json({ error: "API key not configured" });
   }
 
   try {
@@ -33,11 +30,8 @@ export default async function handler(req, res) {
     });
 
     const data = await upstream.json();
-
-    // Pass through the status code from Anthropic
     return res.status(upstream.status).json(data);
   } catch (err) {
-    console.error("Proxy error:", err);
-    return res.status(500).json({ error: "Proxy request failed", detail: err.message });
+    return res.status(500).json({ error: "Proxy failed", detail: err.message });
   }
 }
