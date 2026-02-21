@@ -366,7 +366,7 @@ async function callClaude(prompt, useWebSearch = false) {
   }
   // In production: calls our Vercel proxy which injects the API key server-side.
   // In local dev: Vite proxies /api → localhost:3001 (see vite.config.js).
-  const res = await fetch("/api/claude", {
+  const res = await fetch("https://sdg-mapper-repo.vercel.app/api/claude", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
