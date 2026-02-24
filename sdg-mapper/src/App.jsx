@@ -316,41 +316,55 @@ Respond with ONLY valid JSON:
 }
 Extract up to 6 goals. Prioritize the most specific, quantified commitments. Quality over quantity.`;
 
-const buildAnalysisPrompt = (orgName, goal) => `You are a UN SDG expert. Analyze this corporate sustainability goal and return a JSON object.
+const buildAnalysisPrompt = (orgName, goal) => `You are a senior UN SDG analyst with deep expertise in corporate sustainability, ecology, supply chains, and systems thinking. Your role is to produce rigorous, non-obvious SDG analysis — not generic sustainability consulting.
 
 ORG: ${orgName}
 GOAL: "${goal.title}"
 
-Return ONLY this JSON structure — no prose, no markdown fences, no explanation before or after:
+STEP 1 — REASON THROUGH THESE LENSES BEFORE WRITING OUTPUT (this structured thinking ensures consistent, non-obvious insights):
+
+A) DIRECT SDG LINKS: Which SDGs does this goal directly advance? Be precise about causal mechanism.
+
+B) SECOND-ORDER EFFECTS: What happens downstream? (e.g. a solar goal → land use for panels → pollinator habitat disruption → SDG 15; wind energy → turbine blade bird mortality → SDG 15.5; EV batteries → cobalt mining → child labour → SDG 8.7; data centres for AI → water cooling → SDG 6.4)
+
+C) SUPPLY CHAIN TENSIONS: What upstream or downstream supply chain harms does this goal create or ignore? (e.g. "sustainable packaging" → deforestation for biomaterials; "carbon neutral" → offsets that displace indigenous communities → SDG 10.2)
+
+D) EQUITY & JUSTICE LENS: Does this goal risk exacerbating inequality? (e.g. clean energy transitions that raise energy costs for low-income users → SDG 1; green jobs that require retraining older workers → SDG 8.6)
+
+E) BIODIVERSITY & ECOSYSTEM LENS: Always check SDG 14 and 15 even for non-environmental goals. (e.g. green infrastructure → invasive species risk; circular economy → microplastic contamination in waterways)
+
+F) WHAT WOULD MAKE THIS GOAL TRULY TRANSFORMATIVE: What specific, measurable actions — referencing real UN indicator numbers — would move the needle on the identified gaps?
+
+STEP 2 — OUTPUT your analysis as ONLY this JSON object. No prose before or after. Must start with { and end with }:
 
 {
   "sdgMappings": [
-    {"sdgId": 7, "sdgName": "Affordable & Clean Energy", "type": "primary", "confidence": "High", "reasoning": "Direct causal explanation in 2-3 sentences of how this goal advances this SDG."}
+    {"sdgId": 7, "sdgName": "Affordable & Clean Energy", "type": "primary", "confidence": "High", "reasoning": "2-3 sentence causal explanation grounded in the specific goal language, not generic sustainability claims."}
   ],
   "positiveImpacts": [
-    {"targetId": "7.2", "targetText": "Increase substantially the share of renewable energy", "indicator": "7.2.1", "mechanism": "How this goal specifically advances this target."}
+    {"targetId": "7.2", "targetText": "Increase substantially the share of renewable energy in the global energy mix", "indicator": "7.2.1", "mechanism": "Specific mechanism explaining how this goal advances this exact target — cite the goal's own language."}
   ],
   "negativeTradeoffs": [
-    {"targetId": "15.1", "targetText": "Ensure conservation of terrestrial ecosystems", "mechanism": "Honest causal explanation of the tension or unintended harm.", "severity": "Moderate tension"}
+    {"targetId": "15.5", "targetText": "Take urgent action to reduce degradation of natural habitats and halt biodiversity loss", "mechanism": "Concrete second-order or supply chain causal pathway — e.g. wind turbine blade mortality, solar farm land conversion, battery mineral extraction. Must be specific, not generic.", "severity": "Moderate tension"}
   ],
   "targetsTable": [
     {"targetId": "7.2", "targetText": "Brief target description", "direction": "positive", "indicator": "7.2.1"}
   ],
   "recommendations": [
-    "Specific actionable recommendation referencing a concrete SDG indicator or program type.",
-    "Another specific recommendation to mitigate an identified trade-off.",
-    "A third recommendation to expand SDG coverage."
+    "Specific recommendation that directly mitigates the most severe trade-off identified — reference a real UN indicator (e.g. 15.5.1 Red List Index) and a concrete program type (e.g. biodiversity net gain standard, pollinator-friendly solar guidelines).",
+    "Recommendation addressing the equity/justice dimension — who might be left behind by this goal and what policy mechanism addresses it.",
+    "Recommendation to extend the goal's positive impact to an SDG not currently covered — cite the specific target ID.",
+    "Recommendation referencing a real industry standard, certification, or UN program that would strengthen this commitment (e.g. Science Based Targets, RE100, CDP, Taskforce on Nature-related Financial Disclosures)."
   ]
 }
 
-Rules (read carefully):
-- sdgMappings: 2-4 SDGs max. type must be "primary" or "secondary". confidence must be "High", "Medium", or "Low".
-- positiveImpacts: 2-4 items. Use real UN SDG target IDs (e.g. "7.2", "13.2", "8.5").
-- negativeTradeoffs: 1-3 real tensions. severity must be exactly "Minor friction", "Moderate tension", or "Significant risk". If truly none exist, return [].
-- targetsTable: combine all affected targets (positive + negative) in one list. direction must be "positive" or "negative".
-- recommendations: exactly 3-5 strings. Be specific — no generic statements like "be more sustainable".
-- Keep all strings concise. Total response must fit within token limits.
-- Return ONLY valid JSON. The response must start with { and end with }.`;
+STRICT OUTPUT RULES:
+- sdgMappings: 2-4 SDGs. type = "primary" or "secondary". confidence = "High", "Medium", or "Low".
+- positiveImpacts: 2-4 items with real UN SDG target IDs.
+- negativeTradeoffs: 1-3 items. severity must be exactly "Minor friction", "Moderate tension", or "Significant risk". Never return [] — every corporate goal has at least one tension.
+- targetsTable: all affected targets combined. direction = "positive" or "negative".
+- recommendations: exactly 4 strings. Each must be specific and actionable — never generic. Each must reference either a real UN indicator number, a real certification/standard, or a named program type.
+- Return ONLY valid JSON. No markdown. No explanation.`;
 
 // ═══════════════════════════════════════════════════════════════════
 // API CALL — Claude artifact environment handles auth + CORS
@@ -359,6 +373,7 @@ async function callClaude(prompt, useWebSearch = false) {
   const body = {
     model: "claude-sonnet-4-20250514",
     max_tokens: 8000,
+    temperature: 0,   // deterministic — always picks highest-probability token
     messages: [{ role: "user", content: prompt }],
   };
   if (useWebSearch) {
@@ -366,7 +381,7 @@ async function callClaude(prompt, useWebSearch = false) {
   }
   // In production: calls our Vercel proxy which injects the API key server-side.
   // In local dev: Vite proxies /api → localhost:3001 (see vite.config.js).
-  const res = await fetch("https://sdg-mapper-repo.vercel.app/api/claude", {
+  const res = await fetch("/api/claude", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
