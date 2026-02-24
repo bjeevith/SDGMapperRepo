@@ -12,219 +12,277 @@
     .mono { font-family: 'DM Mono', monospace; }
     .label { font-family: 'DM Mono', monospace; font-size: 11px; color: #64748b; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 12px; }
     .card { background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
-    .goal-btn { display: block; width: 100%; text-align: left; background: transparent; border: 1px solid #1e293b; border-radius: 8px; padding: 12px 16px; cursor: pointer; color: #e2e8f0; margin-bottom: 8px; transition: all 0.15s; font-family: 'Outfit', sans-serif; }
+    .goal-btn { display: block; width: 100%; text-align: left; background: transparent; border: 1px solid #1e293b; border-radius: 8px; padding: 12px 16px; cursor: pointer; color: #e2e8f0; margin-bottom: 8px; transition: all 0.15s; }
+    .goal-btn:hover { border-color: #009edb; }
     .goal-btn.selected { background: #0c2a3d; border-color: #009edb; }
-    .mode-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
-    .mode-tab { flex: 1; padding: 10px 16px; border-radius: 8px; border: 1px solid #1e293b; background: transparent; color: #64748b; font-family: 'DM Mono', monospace; font-size: 11px; cursor: pointer; text-align: center; transition: all 0.15s; }
-    .mode-tab.active-baseline { background: #1c180a; border-color: #f59e0b; color: #f59e0b; }
-    .mode-tab.active-new { background: #0c2a3d; border-color: #009edb; color: #009edb; }
-    .run-btn { border: none; border-radius: 6px; padding: 10px 24px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; cursor: pointer; }
-    .run-btn.baseline { background: #f59e0b; color: #000; }
-    .run-btn.new { background: #009edb; color: #fff; }
-    .run-btn:disabled { background: #1e293b !important; color: #475569 !important; cursor: not-allowed; }
-    .log { background: #0a0d14; border: 1px solid #1e293b; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; max-height: 130px; overflow-y: auto; }
+    .goal-org { font-family: 'DM Mono', monospace; font-size: 10px; color: #009edb; margin-bottom: 4px; }
+    .goal-title { font-size: 13px; line-height: 1.4; }
+    .run-btn { background: #009edb; color: #fff; border: none; border-radius: 6px; padding: 10px 24px; font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; cursor: pointer; }
+    .run-btn:disabled { background: #1e293b; color: #475569; cursor: not-allowed; }
+    .log { background: #0a0d14; border: 1px solid #1e293b; border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; max-height: 150px; overflow-y: auto; }
     .log-line { font-family: 'DM Mono', monospace; font-size: 11px; color: #64748b; margin-bottom: 4px; }
-    .scores { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-bottom: 20px; }
-    .score-card { background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 14px; text-align: center; }
+    .scores { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-bottom: 20px; }
+    .score-card { background: #111827; border: 1px solid #1e293b; border-radius: 10px; padding: 16px; text-align: center; }
     .score-card.overall-pass { background: #14532d; border-color: #22c55e; }
     .score-card.overall-fail { background: #450a0a; border-color: #ef4444; }
-    .score-num { font-family: 'DM Mono', monospace; font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
-    .pass { color: #22c55e; } .warn { color: #f59e0b; } .fail { color: #ef4444; }
-    .score-label { font-family: 'DM Mono', monospace; font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+    .score-num { font-family: 'DM Mono', monospace; font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+    .pass { color: #22c55e; }
+    .warn { color: #f59e0b; }
+    .fail { color: #ef4444; }
+    .score-label { font-family: 'DM Mono', monospace; font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
     .score-desc { font-size: 11px; color: #475569; }
-    .runs-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+    .runs-grid { display: grid; gap: 10px; margin-bottom: 20px; }
     .run-col { background: #111827; border: 1px solid #1e293b; border-radius: 8px; padding: 14px; }
-    .run-title { font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+    .run-title { font-family: 'DM Mono', monospace; font-size: 10px; color: #009edb; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
     .sdg-pill { padding: 6px 10px; background: #1c2537; border-radius: 6px; margin-bottom: 6px; border-left: 3px solid #009edb; font-family: 'DM Mono', monospace; font-size: 11px; color: #64748b; }
     .sdg-pill.secondary { border-left-color: #475569; }
     .tradeoff-pill { padding: 6px 10px; background: #1c2537; border-radius: 6px; margin-bottom: 6px; border-left: 3px solid #ef4444; }
     .rec-pill { padding: 8px 10px; background: #1c2537; border-radius: 6px; margin-bottom: 6px; border-left: 3px solid #7c3aed; font-size: 11px; color: #94a3b8; line-height: 1.5; }
     .rec-num { font-family: 'DM Mono', monospace; font-size: 9px; color: #a78bfa; margin-bottom: 3px; }
     .error { background: #450a0a; border: 1px solid #ef4444; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #fca5a5; margin-bottom: 16px; }
-    .mode-badge { font-family: 'DM Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 4px; }
-    .mode-badge.baseline { background: #3b2d00; color: #f59e0b; }
-    .mode-badge.new-b { background: #0c2a3d; color: #009edb; }
-    hr { border: none; border-top: 1px solid #1e293b; margin: 28px 0; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .spinner { width: 14px; height: 14px; border: 2px solid #1e293b; border-top-color: #009edb; border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block; margin-right: 8px; vertical-align: middle; }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
     .fade { animation: fadeUp 0.3s ease; }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
   </style>
 </head>
 <body>
+
   <div style="margin-bottom:32px;">
     <div class="mono" style="font-size:11px;color:#009edb;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">SDG Goal Mapper — Developer Tool</div>
     <h1>Determinism Test Harness</h1>
-    <p style="color:#64748b;font-size:14px;line-height:1.7;margin-top:8px;">Run the same goal 3× in Baseline then New mode. Compare similarity scores. Target: ≥90% overall.</p>
+    <p style="color:#64748b;font-size:14px;line-height:1.7;margin-top:8px;">
+      Runs the same goal 3× with <code style="background:#1c2537;padding:1px 6px;border-radius:4px;color:#86efac;">temperature: 0</code> and scores structural + semantic similarity. Target: ≥90% overall.
+    </p>
   </div>
 
   <div class="card">
     <div class="label">Select Test Goal</div>
     <button class="goal-btn selected" id="goal-0" onclick="selectGoal(0)">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:#009edb;margin-bottom:4px;">Amazon</div>
-      <div style="font-size:13px;">Reach net-zero carbon across our operations and value chain by 2040</div>
+      <div class="goal-org">Amazon</div>
+      <div class="goal-title">Reach net-zero carbon across our operations and value chain by 2040</div>
     </button>
     <button class="goal-btn" id="goal-1" onclick="selectGoal(1)">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:#009edb;margin-bottom:4px;">Google</div>
-      <div style="font-size:13px;">Operate on 24/7 carbon-free energy on every grid where we operate by 2030</div>
+      <div class="goal-org">Google</div>
+      <div class="goal-title">Operate on 24/7 carbon-free energy on every grid where we operate by 2030</div>
     </button>
     <button class="goal-btn" id="goal-2" onclick="selectGoal(2)">
-      <div style="font-family:'DM Mono',monospace;font-size:10px;color:#009edb;margin-bottom:4px;">Microsoft</div>
-      <div style="font-size:13px;">Be carbon negative by 2030, and by 2050 remove all historical emissions since company founding</div>
+      <div class="goal-org">Microsoft</div>
+      <div class="goal-title">Be carbon negative by 2030, and by 2050 remove all historical emissions since company founding</div>
     </button>
-  </div>
-
-  <div class="mode-tabs">
-    <button class="mode-tab active-baseline" id="tab-baseline" onclick="selectMode('baseline')">🔶 Baseline — Old prompt, default temp</button>
-    <button class="mode-tab" id="tab-new" onclick="selectMode('new')">🔷 New — Structured prompt, temp: 0</button>
-  </div>
-
-  <div class="card" id="desc-baseline">
-    <div style="font-size:13px;color:#94a3b8;line-height:1.7;margin-bottom:14px;"><strong style="color:#f59e0b;">Baseline:</strong> Original v4 prompt, no temperature set (default ~1.0). Run this first.</div>
-    <button class="run-btn baseline" id="run-btn-baseline" onclick="runTest('baseline')">▶ Run Baseline 3× and score</button>
-  </div>
-  <div class="card" style="display:none;" id="desc-new">
-    <div style="font-size:13px;color:#94a3b8;line-height:1.7;margin-bottom:14px;"><strong style="color:#009edb;">New:</strong> Structured 6-lens prompt with temperature: 0. Run after baseline to compare.</div>
-    <button class="run-btn new" id="run-btn-new" onclick="runTest('new')">▶ Run New 3× and score</button>
+    <div style="margin-top:16px;">
+      <button class="run-btn" id="run-btn" onclick="runTest()">▶ Run 3× and score</button>
+    </div>
   </div>
 
   <div id="log-area" style="display:none;" class="log"></div>
   <div id="error-area" style="display:none;" class="error"></div>
-  <div id="baseline-results" style="display:none;"></div>
-  <div id="new-results" style="display:none;"></div>
-  <div id="comparison" style="display:none;"></div>
+  <div id="results" style="display:none;"></div>
 
   <script>
-    const VERCEL = "https://sdg-mapper-repo.vercel.app/api/claude";
+    const VERCEL_URL = "https://sdg-mapper-repo.vercel.app/api/claude";
     const THRESHOLD = 90;
     const GOALS = [
-      { org:"Amazon",    title:"Reach net-zero carbon across our operations and value chain by 2040" },
-      { org:"Google",    title:"Operate on 24/7 carbon-free energy on every grid where we operate by 2030" },
-      { org:"Microsoft", title:"Be carbon negative by 2030, and by 2050 remove all historical emissions since company founding" },
+      { org: "Amazon",    title: "Reach net-zero carbon across our operations and value chain by 2040" },
+      { org: "Google",    title: "Operate on 24/7 carbon-free energy on every grid where we operate by 2030" },
+      { org: "Microsoft", title: "Be carbon negative by 2030, and by 2050 remove all historical emissions since company founding" },
     ];
-    let sel = 0, stored = { baseline: null, new: null };
+
+    let selectedGoal = 0;
 
     function selectGoal(i) {
-      document.querySelectorAll('.goal-btn').forEach((b,j) => b.classList.toggle('selected', i===j));
-      sel = i;
-    }
-    function selectMode(m) {
-      document.getElementById('tab-baseline').className = 'mode-tab' + (m==='baseline'?' active-baseline':'');
-      document.getElementById('tab-new').className = 'mode-tab' + (m==='new'?' active-new':'');
-      document.getElementById('desc-baseline').style.display = m==='baseline'?'block':'none';
-      document.getElementById('desc-new').style.display = m==='new'?'block':'none';
+      document.querySelectorAll('.goal-btn').forEach((b, j) => b.classList.toggle('selected', i === j));
+      selectedGoal = i;
     }
 
-    function baselinePrompt(org, title) {
-      return `You are a UN SDG expert. Analyze this corporate sustainability goal and return a JSON object.\n\nORG: ${org}\nGOAL: "${title}"\n\nReturn ONLY this JSON structure — no prose, no markdown fences, no explanation before or after:\n\n{\n  "sdgMappings": [\n    {"sdgId": 7, "sdgName": "Affordable & Clean Energy", "type": "primary", "confidence": "High", "reasoning": "Direct causal explanation in 2-3 sentences."}\n  ],\n  "positiveImpacts": [\n    {"targetId": "7.2", "targetText": "Increase substantially the share of renewable energy", "indicator": "7.2.1", "mechanism": "How this goal specifically advances this target."}\n  ],\n  "negativeTradeoffs": [\n    {"targetId": "15.1", "targetText": "Ensure conservation of terrestrial ecosystems", "mechanism": "Honest causal explanation of the tension.", "severity": "Moderate tension"}\n  ],\n  "targetsTable": [\n    {"targetId": "7.2", "targetText": "Brief target description", "direction": "positive", "indicator": "7.2.1"}\n  ],\n  "recommendations": [\n    "Specific actionable recommendation referencing a concrete SDG indicator or program type.",\n    "Another specific recommendation to mitigate an identified trade-off.",\n    "A third recommendation to expand SDG coverage."\n  ]\n}\n\nRules:\n- sdgMappings: 2-4 SDGs max. type must be "primary" or "secondary". confidence must be "High", "Medium", or "Low".\n- positiveImpacts: 2-4 items. Use real UN SDG target IDs.\n- negativeTradeoffs: 1-3 real tensions. severity must be exactly "Minor friction", "Moderate tension", or "Significant risk". If truly none exist, return [].\n- targetsTable: combine all affected targets. direction must be "positive" or "negative".\n- recommendations: exactly 3-5 strings.\n- Return ONLY valid JSON. The response must start with { and end with }.`;
+    function buildPrompt(org, title) {
+      return `You are a senior UN SDG analyst with deep expertise in corporate sustainability, ecology, supply chains, and systems thinking. Your role is to produce rigorous, non-obvious SDG analysis — not generic sustainability consulting.
+
+ORG: ${org}
+GOAL: "${title}"
+
+STEP 1 — REASON THROUGH THESE LENSES BEFORE WRITING OUTPUT:
+
+A) DIRECT SDG LINKS: Which SDGs does this goal directly advance? Be precise about causal mechanism.
+B) SECOND-ORDER EFFECTS: What happens downstream? (e.g. solar goal → land use for panels → pollinator habitat disruption → SDG 15; wind energy → turbine blade bird mortality → SDG 15.5; EV batteries → cobalt mining → child labour → SDG 8.7; data centres for AI → water cooling → SDG 6.4)
+C) SUPPLY CHAIN TENSIONS: What upstream or downstream supply chain harms does this goal create or ignore?
+D) EQUITY & JUSTICE LENS: Does this goal risk exacerbating inequality?
+E) BIODIVERSITY & ECOSYSTEM LENS: Always check SDG 14 and 15 even for non-environmental goals.
+F) WHAT WOULD MAKE THIS GOAL TRULY TRANSFORMATIVE: What specific, measurable actions referencing real UN indicator numbers would move the needle?
+
+STEP 2 — OUTPUT only this JSON. No prose. Must start with { and end with }:
+
+{"sdgMappings":[{"sdgId":7,"sdgName":"Affordable & Clean Energy","type":"primary","confidence":"High","reasoning":"2-3 sentence causal explanation."}],"positiveImpacts":[{"targetId":"7.2","targetText":"Increase substantially the share of renewable energy","indicator":"7.2.1","mechanism":"Specific mechanism."}],"negativeTradeoffs":[{"targetId":"15.5","targetText":"Halt biodiversity loss","mechanism":"Concrete second-order causal pathway.","severity":"Moderate tension"}],"targetsTable":[{"targetId":"7.2","targetText":"Brief description","direction":"positive","indicator":"7.2.1"}],"recommendations":["Specific recommendation referencing a real UN indicator and program type.","Recommendation addressing equity/justice dimension.","Recommendation to extend coverage to an uncovered SDG.","Recommendation referencing a real industry standard or certification."]}
+
+STRICT RULES:
+- sdgMappings: 2-4 SDGs. type = "primary" or "secondary". confidence = "High", "Medium", or "Low".
+- positiveImpacts: 2-4 items with real UN SDG target IDs.
+- negativeTradeoffs: 1-3 items. severity = exactly "Minor friction", "Moderate tension", or "Significant risk". Never return [].
+- recommendations: exactly 4 strings, each referencing a real UN indicator, certification, or program.
+- Return ONLY valid JSON. No markdown.`;
     }
 
-    function newPrompt(org, title) {
-      return `You are a senior UN SDG analyst with deep expertise in corporate sustainability, ecology, supply chains, and systems thinking.\n\nORG: ${org}\nGOAL: "${title}"\n\nSTEP 1 — REASON THROUGH THESE LENSES:\nA) DIRECT SDG LINKS: Which SDGs does this goal directly advance?\nB) SECOND-ORDER EFFECTS: What happens downstream? (e.g. solar → pollinator habitat → SDG 15; wind → blade bird mortality → SDG 15.5; EV batteries → cobalt mining → child labour → SDG 8.7; data centres → water cooling → SDG 6.4)\nC) SUPPLY CHAIN TENSIONS: What upstream/downstream harms does this goal create?\nD) EQUITY & JUSTICE LENS: Does this goal risk exacerbating inequality?\nE) BIODIVERSITY & ECOSYSTEM LENS: Always check SDG 14 and 15.\nF) TRANSFORMATIVE ACTIONS: What specific measurable actions referencing real UN indicators would move the needle?\n\nSTEP 2 — OUTPUT only this JSON. No prose. Start with { end with }:\n{"sdgMappings":[{"sdgId":7,"sdgName":"Affordable & Clean Energy","type":"primary","confidence":"High","reasoning":"2-3 sentence causal explanation."}],"positiveImpacts":[{"targetId":"7.2","targetText":"Increase renewable energy share","indicator":"7.2.1","mechanism":"Specific mechanism."}],"negativeTradeoffs":[{"targetId":"15.5","targetText":"Halt biodiversity loss","mechanism":"Concrete second-order causal pathway.","severity":"Moderate tension"}],"targetsTable":[{"targetId":"7.2","targetText":"Brief description","direction":"positive","indicator":"7.2.1"}],"recommendations":["Rec referencing real UN indicator and program.","Rec addressing equity/justice.","Rec to extend SDG coverage.","Rec referencing real industry standard."]}\n\nRULES: sdgMappings 2-4 SDGs. negativeTradeoffs never return []. recommendations exactly 4 strings each referencing real UN indicator or certification. Return ONLY valid JSON.`;
-    }
-
-    async function callAPI(org, title, mode) {
-      const body = { model:"claude-sonnet-4-20250514", max_tokens:8000, messages:[{role:"user", content: mode==='new' ? newPrompt(org,title) : baselinePrompt(org,title)}] };
-      if (mode==='new') body.temperature = 0;
-      const res = await fetch(VERCEL, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body) });
-      const data = await res.json();
-      const text = (data.content||[]).filter(b=>b.type==="text").map(b=>b.text).join("\n");
-      const clean = text.replace(/```json\s*/gi,"").replace(/```\s*/g,"").trim();
-      const s = clean.search(/[{\[]/), e = Math.max(clean.lastIndexOf("}"), clean.lastIndexOf("]"));
-      return JSON.parse(clean.slice(s, e+1));
-    }
-
-    function setOf(arr) { return new Set(arr.map(x=>String(x))); }
-    function jaccard(a,b) { if(a.size===0&&b.size===0)return 100; const i=new Set([...a].filter(x=>b.has(x))); return Math.round(i.size/new Set([...a,...b]).size*100); }
-    function tok(s) { return new Set(s.toLowerCase().replace(/[^a-z0-9\s]/g,"").split(/\s+/).filter(w=>w.length>3)); }
-    function avg(a) { return Math.round(a.reduce((s,x)=>s+x,0)/a.length); }
-    function scoreRuns(runs) {
-      const pairs=[[0,1],[0,2],[1,2]], si=[],st=[],tr=[],rt=[];
-      pairs.forEach(([i,j])=>{
-        const a=runs[i],b=runs[j];
-        si.push(jaccard(setOf((a.sdgMappings||[]).map(m=>m.sdgId)),setOf((b.sdgMappings||[]).map(m=>m.sdgId))));
-        st.push(jaccard(setOf((a.sdgMappings||[]).map(m=>`${m.sdgId}:${m.type}`)),setOf((b.sdgMappings||[]).map(m=>`${m.sdgId}:${m.type}`))));
-        tr.push(jaccard(setOf((a.negativeTradeoffs||[]).map(t=>t.targetId)),setOf((b.negativeTradeoffs||[]).map(t=>t.targetId))));
-        const aR=a.recommendations||[],bR=b.recommendations||[];
-        rt.push(aR.length?avg(aR.map((r,k)=>bR[k]?jaccard(tok(r),tok(bR[k])):0)):0);
+    async function callAPI(org, title) {
+      const res = await fetch(VERCEL_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 8000,
+          temperature: 0,
+          messages: [{ role: "user", content: buildPrompt(org, title) }],
+        }),
       });
-      return {sdgIds:avg(si),sdgTypes:avg(st),tradeoffIds:avg(tr),recText:avg(rt),overall:avg([avg(si),avg(st),avg(tr),avg(rt)])};
+      const data = await res.json();
+      const text = (data.content || []).filter(b => b.type === "text").map(b => b.text).join("\n");
+      const clean = text.replace(/```json\s*/gi, "").replace(/```\s*/g, "").trim();
+      const start = clean.search(/[{\[]/);
+      const end = Math.max(clean.lastIndexOf("}"), clean.lastIndexOf("]"));
+      return JSON.parse(clean.slice(start, end + 1));
     }
-    function cc(s){return s>=THRESHOLD?'pass':s>=70?'warn':'fail';}
+
+    function setOf(arr) { return new Set(arr.map(x => String(x))); }
+    function jaccard(a, b) {
+      if (a.size === 0 && b.size === 0) return 100;
+      const inter = new Set([...a].filter(x => b.has(x)));
+      const union = new Set([...a, ...b]);
+      return Math.round((inter.size / union.size) * 100);
+    }
+    function tokenize(str) {
+      return new Set(str.toLowerCase().replace(/[^a-z0-9\s]/g, "").split(/\s+/).filter(w => w.length > 3));
+    }
+    function textSim(a, b) { return jaccard(tokenize(a), tokenize(b)); }
+    function avg(arr) { return Math.round(arr.reduce((s, x) => s + x, 0) / arr.length); }
+
+    function scoreRuns(runs) {
+      const pairs = [[0,1],[0,2],[1,2]];
+      const sdgIds = [], sdgTypes = [], tradeoffIds = [], recText = [];
+      pairs.forEach(([i, j]) => {
+        const a = runs[i], b = runs[j];
+        sdgIds.push(jaccard(setOf((a.sdgMappings||[]).map(m=>m.sdgId)), setOf((b.sdgMappings||[]).map(m=>m.sdgId))));
+        sdgTypes.push(jaccard(setOf((a.sdgMappings||[]).map(m=>`${m.sdgId}:${m.type}`)), setOf((b.sdgMappings||[]).map(m=>`${m.sdgId}:${m.type}`))));
+        tradeoffIds.push(jaccard(setOf((a.negativeTradeoffs||[]).map(t=>t.targetId)), setOf((b.negativeTradeoffs||[]).map(t=>t.targetId))));
+        const aR = a.recommendations||[], bR = b.recommendations||[];
+        const sims = aR.map((r,k) => bR[k] ? textSim(r, bR[k]) : 0);
+        recText.push(sims.length ? avg(sims) : 0);
+      });
+      return { sdgIds: avg(sdgIds), sdgTypes: avg(sdgTypes), tradeoffIds: avg(tradeoffIds), recText: avg(recText), overall: avg([avg(sdgIds), avg(sdgTypes), avg(tradeoffIds), avg(recText)]) };
+    }
+
+    function colorForScore(s) { return s >= THRESHOLD ? 'pass' : s >= 70 ? 'warn' : 'fail'; }
 
     function addLog(msg) {
-      const el=document.getElementById('log-area'); el.style.display='block';
-      el.innerHTML+=`<div class="log-line">${new Date().toLocaleTimeString()} — ${msg}</div>`; el.scrollTop=el.scrollHeight;
+      const el = document.getElementById('log-area');
+      el.style.display = 'block';
+      el.innerHTML += `<div class="log-line">${new Date().toLocaleTimeString()} — ${msg}</div>`;
+      el.scrollTop = el.scrollHeight;
     }
 
-    function renderResults(runs, scores, mode) {
-      const isB = mode==='baseline';
-      const cid = isB?'baseline-results':'new-results';
-      const oc = scores.overall>=THRESHOLD?'overall-pass':'overall-fail';
-      const dims=[
-        {l:"SDG IDs",s:scores.sdgIds,d:"Same SDGs identified"},
-        {l:"SDG Types",s:scores.sdgTypes,d:"Same primary/secondary"},
-        {l:"Trade-offs",s:scores.tradeoffIds,d:"Same tensions flagged"},
-        {l:"Rec Text",s:scores.recText,d:"Similar wording"},
-        {l:"OVERALL",s:scores.overall,d:`Target ≥${THRESHOLD}%`,o:true},
-      ];
-      document.getElementById(cid).innerHTML = `
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
-          <span class="mode-badge ${isB?'baseline':'new-b'}">${isB?'BASELINE':'NEW'}</span>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:#475569;">${isB?'Old prompt · default temperature':'Structured prompt · temperature: 0'}</span>
-        </div>
-        <div class="label">Similarity Scores</div>
-        <div class="scores">
-          ${dims.map(d=>`<div class="score-card ${d.o?oc:''}"><div class="score-num ${cc(d.s)}">${d.s}%</div><div class="score-label">${d.l}</div><div class="score-desc">${d.d}</div>${d.o?`<div style="margin-top:6px;font-family:'DM Mono',monospace;font-size:10px;" class="${cc(d.s)}">${d.s>=THRESHOLD?'✓ PASSES':'✗ BELOW'} ${THRESHOLD}%</div>`:''}</div>`).join('')}
-        </div>
-        <div class="label">SDG Mappings — 3 Runs</div>
-        <div class="runs-grid">${runs.map((run,i)=>`<div class="run-col"><div class="run-title" style="color:${isB?'#f59e0b':'#009edb'}">Run ${i+1}</div>${(run.sdgMappings||[]).map(m=>`<div class="sdg-pill ${m.type==='secondary'?'secondary':''}">SDG ${m.sdgId} · ${m.type} · ${m.confidence}</div>`).join('')}</div>`).join('')}</div>
-        <div class="label">Trade-offs — 3 Runs</div>
-        <div class="runs-grid">${runs.map((run,i)=>`<div class="run-col"><div class="run-title" style="color:${isB?'#f59e0b':'#009edb'}">Run ${i+1}</div>${(run.negativeTradeoffs||[]).map(t=>`<div class="tradeoff-pill"><div style="font-family:'DM Mono',monospace;font-size:11px;color:#ef4444;">${t.targetId}</div><div style="font-size:10px;color:#94a3b8;margin-top:2px;">${t.severity}</div><div style="font-size:11px;color:#64748b;margin-top:4px;line-height:1.4;">${t.mechanism}</div></div>`).join('')}</div>`).join('')}</div>
-        <div class="label">Recommendations — 3 Runs</div>
-        <div class="runs-grid">${runs.map((run,i)=>`<div class="run-col"><div class="run-title" style="color:${isB?'#f59e0b':'#009edb'}">Run ${i+1}</div>${(run.recommendations||[]).map((r,j)=>`<div class="rec-pill"><div class="rec-num">REC ${j+1}</div>${r}</div>`).join('')}</div>`).join('')}</div>
-      `;
-      document.getElementById(cid).style.display='block';
-      document.getElementById(cid).className='fade';
-    }
+    async function runTest() {
+      const goal = GOALS[selectedGoal];
+      const btn = document.getElementById('run-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Running…';
+      document.getElementById('log-area').innerHTML = '';
+      document.getElementById('log-area').style.display = 'block';
+      document.getElementById('error-area').style.display = 'none';
+      document.getElementById('results').style.display = 'none';
 
-    function renderComparison() {
-      const b=stored.baseline, n=stored.new;
-      if (!b||!n) return;
-      const dims=[['sdgIds','SDG IDs'],['sdgTypes','SDG Types'],['tradeoffIds','Trade-offs'],['recText','Rec Text'],['overall','OVERALL']];
-      document.getElementById('comparison').innerHTML = `
-        <hr/>
-        <div class="label" style="margin-bottom:16px;">Side-by-Side Comparison</div>
-        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px;">
-          ${dims.map(([k,l])=>{const diff=n[k]-b[k];const dc=diff>0?'#22c55e':diff<0?'#ef4444':'#64748b';return`<div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:12px;text-align:center;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:#475569;text-transform:uppercase;margin-bottom:8px;">${l}</div><div style="display:flex;justify-content:space-around;align-items:center;margin-bottom:6px;"><div><div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;" class="${cc(b[k])}">${b[k]}%</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:#f59e0b;">BASE</div></div><div style="color:#334155;">→</div><div><div style="font-family:'DM Mono',monospace;font-size:16px;font-weight:700;" class="${cc(n[k])}">${n[k]}%</div><div style="font-family:'DM Mono',monospace;font-size:9px;color:#009edb;">NEW</div></div></div><div style="font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:${dc};">${diff>0?'+':''}${diff}%</div></div>`;}).join('')}
-        </div>
-        <div style="background:#111827;border:1px solid #1e293b;border-radius:8px;padding:14px 16px;font-size:13px;color:#94a3b8;line-height:1.7;">
-          ${n.overall>=THRESHOLD?`<span style="color:#22c55e;font-weight:600;">✓ New prompt passes ${THRESHOLD}%.</span> Improved by ${n.overall>=b.overall?'+':''}${n.overall-b.overall}% over baseline.`:`<span style="color:#ef4444;font-weight:600;">✗ New prompt at ${n.overall}% — below ${THRESHOLD}%.</span> Baseline was ${b.overall}%. Further tuning needed.`}
-        </div>
-      `;
-      document.getElementById('comparison').style.display='block';
-    }
-
-    async function runTest(mode) {
-      const goal=GOALS[sel];
-      const btnId=mode==='baseline'?'run-btn-baseline':'run-btn-new';
-      const btn=document.getElementById(btnId);
-      btn.disabled=true; btn.innerHTML='<span class="spinner"></span>Running…';
-      document.getElementById('log-area').innerHTML=''; document.getElementById('log-area').style.display='block';
-      document.getElementById('error-area').style.display='none';
-      addLog(`Mode: ${mode.toUpperCase()} · "${goal.title.slice(0,45)}…"`);
-      const runs=[];
-      for(let i=0;i<3;i++){
-        addLog(`Run ${i+1}/3…`);
-        try{ const r=await callAPI(goal.org,goal.title,mode); runs.push(r); addLog(`Run ${i+1} ✓ — ${r.sdgMappings?.length} SDGs, ${r.negativeTradeoffs?.length} trade-offs`); }
-        catch(e){ document.getElementById('error-area').style.display='block'; document.getElementById('error-area').textContent=`Run ${i+1} failed: ${e.message}`; btn.disabled=false; btn.innerHTML=mode==='baseline'?'▶ Run Baseline 3×':'▶ Run New 3×'; return; }
-        if(i<2) await new Promise(r=>setTimeout(r,1500));
+      const runs = [];
+      for (let i = 0; i < 3; i++) {
+        addLog(`Run ${i+1}/3 started…`);
+        try {
+          const result = await callAPI(goal.org, goal.title);
+          runs.push(result);
+          addLog(`Run ${i+1} ✓ — ${result.sdgMappings?.length} SDGs, ${result.negativeTradeoffs?.length} trade-offs`);
+        } catch (e) {
+          const err = document.getElementById('error-area');
+          err.style.display = 'block';
+          err.textContent = `Run ${i+1} failed: ${e.message}`;
+          btn.disabled = false;
+          btn.innerHTML = '▶ Run 3× and score';
+          return;
+        }
+        if (i < 2) await new Promise(r => setTimeout(r, 1500));
       }
-      const scores=scoreRuns(runs); stored[mode]=scores;
-      addLog(`Done — overall: ${scores.overall}%`);
-      renderResults(runs,scores,mode);
-      renderComparison();
-      btn.disabled=false; btn.innerHTML=mode==='baseline'?'▶ Run Baseline again':'▶ Run New again';
+
+      const s = scoreRuns(runs);
+      addLog(`Done — overall similarity: ${s.overall}% (target: ${THRESHOLD}%)`);
+
+      const resultsEl = document.getElementById('results');
+      resultsEl.style.display = 'block';
+      resultsEl.className = 'fade';
+
+      const overallClass = s.overall >= THRESHOLD ? 'overall-pass' : 'overall-fail';
+      const dims = [
+        { label: "SDG IDs matched",         score: s.sdgIds,      desc: "Same SDGs identified" },
+        { label: "Primary/Secondary types",  score: s.sdgTypes,    desc: "Same type assigned" },
+        { label: "Trade-off targets",        score: s.tradeoffIds, desc: "Same tensions flagged" },
+        { label: "Recommendation text",      score: s.recText,     desc: "Similar wording" },
+        { label: "OVERALL",                  score: s.overall,     desc: `Target ≥${THRESHOLD}%`, overall: true },
+      ];
+
+      resultsEl.innerHTML = `
+        <div class="label">Similarity Scores (avg across 3 pairwise comparisons)</div>
+        <div class="scores">
+          ${dims.map(d => `
+            <div class="score-card ${d.overall ? overallClass : ''}">
+              <div class="score-num ${colorForScore(d.score)}">${d.score}%</div>
+              <div class="score-label">${d.label}</div>
+              <div class="score-desc">${d.desc}</div>
+              ${d.overall ? `<div style="margin-top:8px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;" class="${colorForScore(d.score)}">${d.score >= THRESHOLD ? `✓ PASSES ${THRESHOLD}% threshold` : `✗ BELOW ${THRESHOLD}% threshold`}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="label">SDG Mappings — All 3 Runs</div>
+        <div class="runs-grid" style="grid-template-columns:repeat(3,1fr);">
+          ${runs.map((run, i) => `
+            <div class="run-col">
+              <div class="run-title">Run ${i+1}</div>
+              ${(run.sdgMappings||[]).map(m => `
+                <div class="sdg-pill ${m.type === 'secondary' ? 'secondary' : ''}">
+                  SDG ${m.sdgId} · ${m.type} · ${m.confidence}
+                </div>
+              `).join('')}
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="label">Trade-offs — All 3 Runs</div>
+        <div class="runs-grid" style="grid-template-columns:repeat(3,1fr);">
+          ${runs.map((run, i) => `
+            <div class="run-col">
+              <div class="run-title">Run ${i+1}</div>
+              ${(run.negativeTradeoffs||[]).map(t => `
+                <div class="tradeoff-pill">
+                  <div style="font-family:'DM Mono',monospace;font-size:11px;color:#ef4444;">${t.targetId}</div>
+                  <div style="font-size:11px;color:#94a3b8;margin-top:2px;">${t.severity}</div>
+                  <div style="font-size:11px;color:#64748b;margin-top:4px;line-height:1.4;">${t.mechanism}</div>
+                </div>
+              `).join('')}
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="label">Recommendations — All 3 Runs</div>
+        <div class="runs-grid" style="grid-template-columns:repeat(3,1fr);">
+          ${runs.map((run, i) => `
+            <div class="run-col">
+              <div class="run-title">Run ${i+1}</div>
+              ${(run.recommendations||[]).map((r, j) => `
+                <div class="rec-pill">
+                  <div class="rec-num">REC ${j+1}</div>
+                  ${r}
+                </div>
+              `).join('')}
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      btn.disabled = false;
+      btn.innerHTML = '▶ Run again';
     }
   </script>
 </body>
