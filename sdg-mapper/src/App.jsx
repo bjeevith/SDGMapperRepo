@@ -351,10 +351,10 @@ STEP 2 — OUTPUT your analysis as ONLY this JSON object. No prose before or aft
     {"targetId": "7.2", "targetText": "Brief target description", "direction": "positive", "indicator": "7.2.1"}
   ],
   "recommendations": [
-    "Specific recommendation that directly mitigates the most severe trade-off identified — reference a real UN indicator (e.g. 15.5.1 Red List Index) and a concrete program type (e.g. biodiversity net gain standard, pollinator-friendly solar guidelines).",
-    "Recommendation addressing the equity/justice dimension — who might be left behind by this goal and what policy mechanism addresses it.",
-    "Recommendation to extend the goal's positive impact to an SDG not currently covered — cite the specific target ID.",
-    "Recommendation referencing a real industry standard, certification, or UN program that would strengthen this commitment (e.g. Science Based Targets, RE100, CDP, Taskforce on Nature-related Financial Disclosures)."
+    "TRADE-OFF MITIGATION: [Name the specific tension, e.g. 'Solar farm expansion risks pollinator habitat loss (SDG 15.5.1 Red List Index).']. [Explain the mechanism of harm.] [Name a specific program that addresses it, e.g. 'Adopt SEIA pollinator-friendly solar guidelines and require biodiversity net gain assessments for all new installations.']. [State what success looks like, e.g. 'Target zero net loss of pollinator habitat against a 2024 baseline.']",
+    "EQUITY & JUSTICE: [Name who is at risk, e.g. 'Low-income households risk worsening energy poverty (SDG 1.2.1) as renewable transitions raise electricity costs in some regions.']. [Explain the causal mechanism.] [Name a specific policy or program, e.g. 'Establish a community benefit fund allocating 2% of project revenues to subsidise energy bills for households below median income.']. [Reference the relevant UN target, e.g. 'This directly supports SDG 7.1 universal energy access.']",
+    "SDG COVERAGE EXTENSION: [Identify a high-relevance SDG not yet covered, e.g. 'This goal does not address SDG 8.7 forced labour risks in cobalt and lithium supply chains.']. [Explain why it is relevant to this specific goal.] [Give a concrete action, e.g. 'Commission an independent audit against the OECD Due Diligence Guidance for Responsible Business Conduct and publish results annually.']. [Name the indicator to track, e.g. 'Track SDG 8.7.1 proportion of children engaged in child labour in tier-1 and tier-2 suppliers.']",
+    "STANDARD OR CERTIFICATION: [Name the most relevant standard, e.g. 'Align with the Science Based Targets initiative Net-Zero Standard, which requires validated near-term targets covering 95% of Scope 1 and 2 by 2030.']. [Explain what it requires beyond the current goal.] [Name one specific gap, e.g. 'The current goal lacks interim milestones — SBTi requires a validated 2030 target, not just a 2040 endpoint.']. [State the action needed, e.g. 'Submit for SBTi validation within 24 months and publish a five-year milestone roadmap.']"
   ]
 }
 
@@ -363,7 +363,7 @@ STRICT OUTPUT RULES:
 - positiveImpacts: 2-4 items with real UN SDG target IDs.
 - negativeTradeoffs: 1-3 items. severity must be exactly "Minor friction", "Moderate tension", or "Significant risk". Never return [] — every corporate goal has at least one tension.
 - targetsTable: all affected targets combined. direction = "positive" or "negative".
-- recommendations: exactly 4 strings. Each must be specific and actionable — never generic. Each must reference either a real UN indicator number, a real certification/standard, or a named program type.
+- recommendations: exactly 4 strings. Each must be 3-4 sentences long — never a one-liner. Each follows this structure: (1) name the problem or opportunity specific to this org and goal, (2) explain the causal mechanism or gap, (3) give a concrete named action referencing a real program/standard/indicator, (4) state a measurable outcome. Never generic.
 - Return ONLY valid JSON. No markdown. No explanation.`;
 
 // ═══════════════════════════════════════════════════════════════════
@@ -381,7 +381,7 @@ async function callClaude(prompt, useWebSearch = false) {
   }
   // In production: calls our Vercel proxy which injects the API key server-side.
   // In local dev: Vite proxies /api → localhost:3001 (see vite.config.js).
-  const res = await fetch("https://sdg-mapper-repo.vercel.app/api/claude", {
+  const res = await fetch("/api/claude", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
