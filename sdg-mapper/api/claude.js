@@ -36,7 +36,7 @@ function isRateLimited(ip) {
 }
 
 // ── 3. Input validation ───────────────────────────────────────────────
-const MAX_PROMPT_LENGTH = 8000;
+const MAX_PROMPT_LENGTH = 20000;
 
 function validateBody(body) {
   if (!body || typeof body !== "object") return "Invalid request body";
